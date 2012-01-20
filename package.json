@@ -1,0 +1,17 @@
+{
+  "author": "Christopher Meiklejohn <cmeiklejohn@criticalpair.com>",
+  "name": "unrecorded.fm",
+  "description": "the group rdio listening experience",
+  "version": "0.0.1",
+  "repository": {
+    "url": "https://github.com/criticalpair/unrecorded.fm.git"
+  },
+  "dependencies": {
+    "express": "2.5.6",
+    "socket.io": "0.8.7",
+    "hbs": "1.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "~0.5.5"
+  }
+}
