@@ -1,13 +1,49 @@
+<!DOCTYPE html>
 <html>
-<head>
-  <title></title>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>
-  <script src="/socket.io/socket.io.js"></script>
-  <script src="token.js"></script>
-  <script src="web.js"></script>
-</head>
-<body>
-  <div id="apiswf"></div>
-</body>
+  <head>
+    <title>{{title}}</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/client.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/pictos_base64.css" />
+    <link rel="stylesheet" type="text/css" href="/css/unrecorded.css" />
+  </head>
+  <body>
+    <div id="app">
+
+      <div class='player'>
+        <div id="apiswf"></div>
+
+        <div class="player_face">
+
+          <header class='player_header'>
+            <h2 class="song_title"></h2>
+          </header>
+
+          <article class='album'>
+            <img class='cover' alt="Album art for current track" height="200" width="200" src="http://www.loremipsum.net/pixelgif/pics/pixel.gif">
+          </article>
+
+          <input type="text" class="play_key" value="a105771">
+
+          <footer class='player_footer'>
+            <div class="player_controls">
+              <a class="search icon">s</a>
+              <a class="play icon">4</a>
+              <a class="next icon">7</a>
+              <a class="volume icon">></a>
+            </div>
+          </footer>
+        </div>
+        
+        <div class='player_shade'></div>
+      </div>
+
+      <footer id="main_footer">
+        <h1 id="logo">unrecorded.fm</h1>
+        powered by <a href="http://rdio.com">Rdio®</a>
+      </footer>
+    </div>
+  </body>
 </html>

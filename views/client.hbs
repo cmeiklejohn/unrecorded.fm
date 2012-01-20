@@ -1,0 +1,134 @@
+// TODO: make this object oriented :)
+(function (root) {
+  var playbackToken         = "{{token}}",
+      domain                = "{{domain}}",
+      apiswf                = null,
+      socket                = null,
+      currentSource         = null,
+      currentTrack          = null,
+      currentSourcePosition = null;
+
+
+  $(document).ready(function() {
+    var flashvars  = { 'playbackToken': playbackToken, 'domain': domain, 'listener': 'Unrecorded' };
+    var params     = { 'allowScriptAccess': 'always' };
+    var attributes = {};
+    swfobject.embedSWF('http://www.rdio.com/api/swf/', 'apiswf', 1, 1, '9.0.0', 'expressInstall.swf', flashvars, params, attributes);
+  });
+
+  root.Unrecorded = {};
+
+  Unrecorded.ready = function ready(user) {
+    console.log("ready");
+    apiswf = $('#apiswf').get(0);
+    socket = io.connect();
+
+    $('.play').click(function() { 
+      var playKey = $(".play_key").val();
+      apiswf.rdio_play(playKey);
+      currentSource = playKey;
+    });
+
+    $('.next').click(function() { 
+      socket.emit('next?');
+      console.log('unrecorded: sent next?');
+    });
+    
+    socket.on('next', function() { 
+      console.log('unrecorded: received next');
+      apiswf.rdio_next();
+    });
+    
+    // mute is local and should not send a socket event
+    $('.volume').click(function(ev) {
+      var target  = $(ev.target),
+          muted   = target.hasClass('muted');
+
+      if (muted) {
+        target.removeClass('muted').html('>');
+      }
+      else {
+        target.addClass('muted').html('<');
+      }
+      
+      apiswf.rdio_setMute(!muted);
+    });
+
+
+    // When someone asks what you're listening to, only respond if you've
+    // actually started a track.
+    //
+    socket.on('playing?', function() { 
+      console.log('unrecorded: received playing?');
+
+      if(currentTrack) { 
+        socket.emit('playing', { 
+          playingSource: currentSource, 
+          playingTrack: currentTrack,
+          sourcePosition: currentSourcePosition
+        });
+
+        console.log('unrecorded: sent playing; source=' + currentSource + ' track=' + currentTrack + ' position=' + currentSourcePosition);
+      }
+    });
+
+    // When someone tells you what they're listening to, only attempt to
+    // play it if the necessary information is available.
+    //
+    socket.on('playing', function(data) { 
+      console.log('unrecorded: received playing; source=' + data.playingSource + ' track=' + data.playingTrack + ' position=' + data.sourcePosition);
+
+      if(data.playingSource != null && data.sourcePosition != null) {
+
+        // Set source if necessary.
+        //
+        if(currentSource != data.playingSource) { 
+          apiswf.rdio_play(data.playingSource);
+          currentSource = data.playingSource;
+        }
+
+        // Move to position in the source.
+        //
+        apiswf.rdio_setCurrentPosition(data.sourcePosition);
+        currentSourcePosition = data.sourcePosition;
+
+        // Set track.
+        //
+        currentTrack = data.playingTrack;
+
+        console.log('unrecorded: rdio_play triggered; source=' + data.playingSource + ' position=' + data.sourcePosition);
+      }
+    });
+    
+    // When you start playing something, send events about tracks, but
+    // don't send playlist events, because the client can get that data
+    // from the track event which immediately follows.  Also update local
+    // pointers to source and position as they change, and modify the UI
+    // when we get track information.
+    //
+    Unrecorded.playingTrackChanged = function playingTrackChanged(playingTrack, sourcePosition) {
+      console.log('unrecorded: playingTrackChanged; source=' + currentSource + ' track=' + playingTrack + ' position=' + sourcePosition);
+
+      currentTrack          = playingTrack;
+      currentSourcePosition = sourcePosition;
+
+      if (playingTrack) { 
+        socket.emit('playing', { 
+          playingSource: currentSource, 
+          playingTrack: playingTrack,
+          sourcePosition: sourcePosition
+        });
+
+        console.log('unrecorded: sent playing; source=' + currentSource + ' track=' + currentTrack + ' position=' + currentSourcePosition);
+
+        updateTrackUI(currentSource, currentTrack, currentSourcePosition);
+      }
+    }
+  }
+
+  var updateTrackUI = function(playingSource, playingTrack, sourcePosition) { 
+    $('.song_title').text(playingTrack.name);
+    $('.album .cover').attr("src", playingTrack.icon);
+  };
+
+}(this));

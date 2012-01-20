@@ -1,0 +1,169 @@
+/*
+
+  =RESET
+  =BASE
+  =LAYOUT
+  =MODULES
+
+*/
+
+/* =RESET ( http://meyerweb.com/eric/tools/css/reset/ | v2.0 )
+========================================================== */
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+
+/* =BASE
+========================================================== */
+html, body { color: #fff; background: #3d3d3d url(/img/bg.png); font-family: Arial; font-size: 14px; 
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+h1 { font-size: 32px; }
+
+a { color: #fff; cursor: pointer; }
+
+
+/* =LAYOUT
+========================================================== */
+#app { width: 500px; margin: 0 auto; }
+#main_footer { font-size: 12px; text-align: center; color: #888; padding: 10px; 
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+#main_footer a { color: #aaa; text-decoration: none; }
+#main_footer a:hover { color: #fff; }
+#logo { background: url(/img/logo.png) no-repeat; text-indent: -10000px; width: 227px; height: 29px; margin: 0 auto 10px auto; }
+
+/* =MODULES
+========================================================== */
+.icon { font-family: 'Pictos'; }
+
+.player { position: relative; margin: 100px auto 20px auto; width: 400px; }
+
+.player #apiswf { position: absolute; top: 0; left: 0; }
+
+.player .player_face { position: relative; z-index: 500; background: #4a4a4a; width: 200px; margin: auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.player .player_shade { margin: -20px auto 0 auto; position: relative; z-index: 1; width: 258px; height: 39px; background: url(/img/dropshadow.png) no-repeat; }
+
+.player .player_header { text-align: center; height: 53px; border-bottom: 1px solid #3e3e3e;
+  background: rgb(118,118,118);
+  background: -moz-linear-gradient(top,  rgba(118,118,118,1) 0%, rgba(83,83,83,1) 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(118,118,118,1)), color-stop(100%,rgba(83,83,83,1)));
+  background: -webkit-linear-gradient(top,  rgba(118,118,118,1) 0%,rgba(83,83,83,1) 100%);
+  background: -o-linear-gradient(top,  rgba(118,118,118,1) 0%,rgba(83,83,83,1) 100%);
+  background: -ms-linear-gradient(top,  rgba(118,118,118,1) 0%,rgba(83,83,83,1) 100%);
+  background: linear-gradient(top,  rgba(118,118,118,1) 0%,rgba(83,83,83,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#767676', endColorstr='#535353',GradientType=0 );
+
+  border-radius: 8px 8px 0 0;
+  box-shadow: inset 0 0px 1px 1px rgba(255, 255, 255, 0.1);
+}
+
+.player .player_header > h2 { padding-top: 17px; font-size: 16px; }
+
+.player .album { width: 200px; height: 200px;
+  background: rgb(0,127,191);
+  background: -moz-linear-gradient(top,  rgba(0,127,191,1) 0%, rgba(7,85,124,1) 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,127,191,1)), color-stop(100%,rgba(7,85,124,1)));
+  background: -webkit-linear-gradient(top,  rgba(0,127,191,1) 0%,rgba(7,85,124,1) 100%);
+  background: -o-linear-gradient(top,  rgba(0,127,191,1) 0%,rgba(7,85,124,1) 100%);
+  background: -ms-linear-gradient(top,  rgba(0,127,191,1) 0%,rgba(7,85,124,1) 100%);
+  background: linear-gradient(top,  rgba(0,127,191,1) 0%,rgba(7,85,124,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#007fbf', endColorstr='#07557c',GradientType=0 );  
+
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+.player .play_key { border: none; height: 20px; width: 192px; padding: 4px; background: #333; color: #888; font-size: 12px; font-style: italic; text-align: center;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.8);
+  box-shadow: inset 0 1px 8px rgba(0, 0, 0, 0.3);
+}
+
+.player .play_key:focus { outline: none; color: #fff; }
+
+.player .player_footer { padding: 10px; text-align: center; border-top: 1px solid #7c7c7c;
+  background: rgb(107,107,107);
+  background: -moz-linear-gradient(top,  rgba(107,107,107,1) 0%, rgba(63,63,63,1) 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(107,107,107,1)), color-stop(100%,rgba(63,63,63,1)));
+  background: -webkit-linear-gradient(top,  rgba(107,107,107,1) 0%,rgba(63,63,63,1) 100%);
+  background: -o-linear-gradient(top,  rgba(107,107,107,1) 0%,rgba(63,63,63,1) 100%);
+  background: -ms-linear-gradient(top,  rgba(107,107,107,1) 0%,rgba(63,63,63,1) 100%);
+  background: linear-gradient(top,  rgba(107,107,107,1) 0%,rgba(63,63,63,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6b6b6b', endColorstr='#3f3f3f',GradientType=0 );
+  
+  border-radius: 0 0 8px 8px;
+}
+
+.player .player_footer > .player_controls > a { font-size: 26px; line-height: 1px; height: 26px; display: inline-block; color: rgba(0, 0, 0, 0.5);
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.2);
+}
+.player .player_footer > .player_controls > a:active { 
+  -webkit-transform: scale(0.9);
+}
+
+.player .player_footer > .player_controls > a.search { font-size: 22px; line-height: 14px; padding-right: 10px; }
+.player .player_footer > .player_controls > a.play { font-size: 20px; line-height: 14px; padding: 5px 10px 5px 11px; color: #2088c9; 
+  background: rgb(255,255,255);
+  background: -moz-linear-gradient(top,  rgba(255,255,255,1) 0%, rgba(160,190,208,1) 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(100%,rgba(160,190,208,1)));
+  background: -webkit-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(160,190,208,1) 100%);
+  background: -o-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(160,190,208,1) 100%);
+  background: -ms-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(160,190,208,1) 100%);
+  background: linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(160,190,208,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#a0bed0',GradientType=0 );
+  
+  border-radius: 20px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.player .player_footer > .player_controls > a.next { font-size: 22px; line-height: 14px; padding-left: 10px; }
+.player .player_footer > .player_controls > a.volume { font-size: 13px; position: absolute; right: 8px; bottom: -8px; }
+.player .player_footer > .player_controls > a.volume.muted { color: #f46d6d;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.6);
+} 
