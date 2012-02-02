@@ -78,8 +78,6 @@ a { color: #fff; cursor: pointer; }
 
 /* =MODULES
 ========================================================== */
-.icon { font-family: 'Pictos'; }
-
 .player { position: relative; margin: 100px auto 20px auto; width: 400px; }
 
 .player #apiswf { position: absolute; top: 0; left: 0; }
@@ -140,15 +138,15 @@ a { color: #fff; cursor: pointer; }
   border-radius: 0 0 8px 8px;
 }
 
-.player .player_footer > .player_controls > a { font-size: 26px; line-height: 1px; height: 26px; display: inline-block; color: rgba(0, 0, 0, 0.5);
+.player .player_footer > .player_controls > a { font-size: 26px; height: 26px; display: inline-block; color: rgba(0, 0, 0, 0.5);
   text-shadow: 0 1px 1px rgba(255, 255, 255, 0.2);
 }
 .player .player_footer > .player_controls > a:active { 
   -webkit-transform: scale(0.9);
 }
 
-.player .player_footer > .player_controls > a.search { font-size: 22px; line-height: 14px; padding-right: 10px; }
-.player .player_footer > .player_controls > a.play { font-size: 20px; line-height: 14px; padding: 5px 10px 5px 11px; color: #2088c9; 
+.player .player_footer > .player_controls > a.search { font-size: 18px; padding-right: 10px; }
+.player .player_footer > .player_controls > a.play { font-size: 20px; line-height: 20px; padding: 9px 10px 3px 13px; color: #2088c9; 
   background: rgb(255,255,255);
   background: -moz-linear-gradient(top,  rgba(255,255,255,1) 0%, rgba(160,190,208,1) 100%);
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(100%,rgba(160,190,208,1)));
@@ -162,8 +160,11 @@ a { color: #fff; cursor: pointer; }
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 }
 
-.player .player_footer > .player_controls > a.next { font-size: 22px; line-height: 14px; padding-left: 10px; }
-.player .player_footer > .player_controls > a.volume { font-size: 13px; position: absolute; right: 8px; bottom: -8px; }
-.player .player_footer > .player_controls > a.volume.muted { color: #f46d6d;
+.player .player_footer > .player_controls > a.next { font-size: 18px; padding-left: 12px; }
+.player .player_footer > .player_controls > a.vol { font-size: 13px; position: absolute; right: 8px; bottom: -8px; }
+.player .player_footer > .player_controls > a.vol:hover { color: #fff;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.6);
+}
+.player .player_footer > .player_controls > a.vol.volume_mute { color: #f46d6d;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.6);
 } 
