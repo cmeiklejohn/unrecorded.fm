@@ -40,15 +40,17 @@
     });
     
     // mute is local and should not send a socket event
-    $('.volume').click(function(ev) {
+    $('.vol').click(function(ev) {
       var target  = $(ev.target),
-          muted   = target.hasClass('muted');
+          muted   = target.hasClass('volume_mute');
 
       if (muted) {
-        target.removeClass('muted').html('>');
+        target.removeClass('volume_mute')
+              .addClass('volume');
       }
       else {
-        target.addClass('muted').html('<');
+        target.addClass('volume_mute')
+              .removeClass('volume');
       }
       
       apiswf.rdio_setMute(!muted);
