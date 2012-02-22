@@ -66,7 +66,7 @@ var clientManagement = {
     socket.broadcast.emit('clientConnected', { id: socket.id });
     console.log('unrecorded: sent clientConnected id=' + socket.id);
 
-    numListeners = numListeners - 1;
+    numListeners = numListeners + 1;
     broadcastListenerCount(socket);
   },
   broadcastListenerCount: function(socket) { 
