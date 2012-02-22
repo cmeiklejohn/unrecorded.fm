@@ -38,6 +38,11 @@
       console.log('unrecorded: received next');
       apiswf.rdio_next();
     });
+
+    socket.on('listeners', function(data) { 
+      console.log('unrecorded: received listeners');
+      $('.listeners').text(data.listeners);
+    });
     
     // mute is local and should not send a socket event
     $('.vol').click(function(ev) {
