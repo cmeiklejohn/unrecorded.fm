@@ -1,12 +1,13 @@
-var express = require('express'),
-    socket  = require('socket.io'),
-    app     = express.createServer(express.logger()),
-    io      = socket.listen(app),
-    port    = process.env.PORT || 3000,
-    token   = process.env.TOKEN,
-    domain  = process.env.DOMAIN, 
-    clients = {},
-    host    = null;
+var express      = require('express'),
+    socket       = require('socket.io'),
+    app          = express.createServer(express.logger()),
+    io           = socket.listen(app),
+    port         = process.env.PORT || 3000,
+    token        = process.env.TOKEN,
+    domain       = process.env.DOMAIN,
+    clients      = {},
+    host         = null,
+    numListeners = 0;
 
 app.configure(function() {
   app.set('views', __dirname + '/views');
@@ -54,6 +55,9 @@ var clientManagement = {
 
     socket.broadcast.emit('clientDisconnected', { id: socket.id });
     console.log('unrecorded: sent clientDisconnected id=' + socket.id);
+
+    numListeners = numListeners - 1;
+    broadcastListenerCount(socket);
   },
   connectClient: function(socket) { 
     clients[socket.id] = socket;
@@ -61,6 +65,13 @@ var clientManagement = {
 
     socket.broadcast.emit('clientConnected', { id: socket.id });
     console.log('unrecorded: sent clientConnected id=' + socket.id);
+
+    numListeners = numListeners + 1;
+    broadcastListenerCount(socket);
+  },
+  broadcastListenerCount: function(socket) { 
+    socket.broadcast.emit('listeners', { listeners: numListeners });
+    console.log('unrecorded: sent listeners');
   }
 }
 
