@@ -76,6 +76,8 @@ a { color: #fff; cursor: pointer; }
 #main_footer a:hover { color: #fff; }
 #logo { background: url(/img/logo.png) no-repeat; text-indent: -10000px; width: 227px; height: 29px; margin: 0 auto 10px auto; }
 
+.hosting { display: none; }
+
 /* =MODULES
 ========================================================== */
 .player { position: relative; margin: 100px auto 20px auto; width: 400px; }
@@ -167,4 +169,4 @@ a { color: #fff; cursor: pointer; }
 }
 .player .player_footer > .player_controls > a.vol.volume_mute { color: #f46d6d;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.6);
-} 
+}

@@ -79,6 +79,12 @@
       }
     });
 
+    // Whenever we're told we're the host, update the UI.
+    //
+    socket.on('hosting', function() { 
+      $('.hosting').toggle();
+    });
+
     // When someone tells you what they're listening to, only attempt to
     // play it if the necessary information is available.
     //

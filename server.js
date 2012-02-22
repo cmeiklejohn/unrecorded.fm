@@ -41,10 +41,11 @@ var clientManagement = {
 
     socket.broadcast.emit('hostPromoted', { id: socket.id });
     console.log('unrecorded: sent hostPromoted id=' + socket.id);
+
+    socket.emit('hosting');
   },
   demoteHost: function(socket) { 
-    host = null;
-    console.log('unrecorded: host demoted');
+    host = null; console.log('unrecorded: host demoted');
 
     socket.broadcast.emit('hostDemoted');
     console.log('unrecorded: sent hostDemoted');
