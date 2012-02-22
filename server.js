@@ -45,7 +45,8 @@ var clientManagement = {
     socket.emit('hosting');
   },
   demoteHost: function(socket) { 
-    host = null; console.log('unrecorded: host demoted');
+    host = null; 
+    console.log('unrecorded: host demoted');
 
     socket.broadcast.emit('hostDemoted');
     console.log('unrecorded: sent hostDemoted');
