@@ -49,6 +49,10 @@ var clientManagement = {
     socket.broadcast.emit('hostDemoted');
     console.log('unrecorded: sent hostDemoted');
   },
+  broadcastListenerCount: function(socket) { 
+    socket.broadcast.emit('listeners', { listeners: numListeners });
+    console.log('unrecorded: sent listeners');
+  },
   disconnectClient: function(socket) { 
     clients[socket.id] = null;
     console.log('unrecorded: received disconnect; id=' + socket.id);
@@ -57,7 +61,7 @@ var clientManagement = {
     console.log('unrecorded: sent clientDisconnected id=' + socket.id);
 
     numListeners = numListeners - 1;
-    broadcastListenerCount(socket);
+    clientManagement.broadcastListenerCount(socket);
   },
   connectClient: function(socket) { 
     clients[socket.id] = socket;
@@ -67,11 +71,7 @@ var clientManagement = {
     console.log('unrecorded: sent clientConnected id=' + socket.id);
 
     numListeners = numListeners + 1;
-    broadcastListenerCount(socket);
-  },
-  broadcastListenerCount: function(socket) { 
-    socket.broadcast.emit('listeners', { listeners: numListeners });
-    console.log('unrecorded: sent listeners');
+    clientManagement.broadcastListenerCount(socket);
   }
 }
 
